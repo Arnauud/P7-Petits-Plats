@@ -1,0 +1,72 @@
+.filter {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #EDEDED;
+  padding: 10px 10px 10px 110px;
+  z-index: 3;
+  position: relative;
+  top: -20px;
+  gap: 40px;
+}
+
+.btn {
+    width: 188px;
+    height: 56p;
+    top: 688px;
+    left: 608px;
+    padding: 17px 16px 17px 16px;
+    gap: 63px;
+    border-radius: 11px;
+    opacity: 0px;
+    color: black;
+    background-color: white;
+    border: none;
+  }
+
+  .dropdown-search {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+  }
+
+  .dropdown-item:hover{
+    background-color: #FFD15B;
+  }
+  
+  .recipeCounter {
+    position: relative;
+    top: 5px;
+    left: 640px;
+    font-size: 21px;
+    font-family: initial;
+  }
+
+
+/* Styles for each selected item */
+  .selected-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  
+}
+
+.selected-item{
+  border-radius: 10px;
+  background: #FFD15B;
+  display: inline;
+  padding: 10px;
+}
+
+/* Hover effect for selected items */
+.selected-item:hover {
+  font-weight: bold;
+}
+
+/* Remove button styles */
+.selected-item .remove-button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  
+}
