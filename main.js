@@ -3,7 +3,6 @@ import { initializeDropdowns } from './Filter/dropDown.js';
 import { displayRecipes } from './RecipeCard/displayRecipe.js';
 import { searchRecipes } from './mainSearch.js';
 
-
 displayRecipes(recipes);
 initializeDropdowns(recipes);
 

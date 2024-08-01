@@ -2,7 +2,7 @@ import { creationRecipeCard } from "./creationRecipeCard.js";
 
 export function displayRecipes(recipes) {
     const main = document.getElementById('mainRecipe');
-    main.innerHTML = "";  // Clear existing recipes
+    // main.innerHTML = "";  // Clear existing recipes
     const recipeCounter = document.querySelector('.recipeCounter');
 
     if (!recipes || recipes.length === 0) {
