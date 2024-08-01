@@ -1,5 +1,3 @@
-import { recipes } from "../assets/data/recipes";
-
 function toLowerCaseItems(items) {
     return items.map(item => item.toLowerCase());
 }
