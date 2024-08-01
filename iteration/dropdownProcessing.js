@@ -124,13 +124,20 @@ export function handleItemSelected(item, dropdownMenu, items, recipes) {
         createDropdownItems(items, dropdownMenu);
         console.log(`Dropdown menu updated with items: ${items}`);
 
-        // Collect all selected items and filter recipes based on them
         const selectedItems = Array.from(document.querySelectorAll('.selected-item'))
             .map(el => el.childNodes[0].textContent.trim());
         console.log(`Selected items after removing: ${selectedItems}`);
-        
+
         if (Array.isArray(recipes)) {
-            const filteredRecipes = filterRecipes(recipes, selectedItems);
+            const filteredRecipes = recipes.filter(recipe => {
+                const hasAllItems = selectedItems.every(item =>
+                    recipe.ingredients.includes(item) ||
+                    recipe.appliances.includes(item) ||
+                    recipe.utensils.includes(item)
+                );
+                console.log(`Recipe "${recipe.name}" has all selected items (${selectedItems}): ${hasAllItems}`);
+                return hasAllItems;
+            });
             console.log(`Filtered recipes after removing:`, filteredRecipes);
             displayRecipes(filteredRecipes);
         } else {
@@ -142,38 +149,25 @@ export function handleItemSelected(item, dropdownMenu, items, recipes) {
     mainRecipeContainer.insertBefore(selectedItemElement, mainRecipeContainer.firstChild);
     console.log(`Inserted selected item element into container: ${item}`);
 
-    // Collect all selected items and filter recipes based on them
     const selectedItems = Array.from(document.querySelectorAll('.selected-item'))
         .map(el => el.childNodes[0].textContent.trim());
-    console.log(`Selected item: ${selectedItems}`);
+    console.log(`Selected items: ${selectedItems}`);
 
     if (Array.isArray(recipes)) {
-        const filteredRecipes = filterRecipes(recipes, selectedItems);
+        const filteredRecipes = recipes.filter(recipe => {
+            const hasAllItems = selectedItems.every(item =>
+                recipe.ingredients.includes(item) ||
+                recipe.appliances.includes(item) ||
+                recipe.utensils.includes(item)
+            );
+            console.log(`Recipe "${recipe.name}" has all selected items (${selectedItems}): ${hasAllItems}`);
+            return hasAllItems;
+        });
         console.log(`Filtered recipes for selected items ${selectedItems}:`, filteredRecipes);
         displayRecipes(filteredRecipes);
     } else {
         console.error('Recipes is not an array or is undefined:', recipes);
     }
-}
-
-// Helper function to filter recipes based on selected items
-function filterRecipes(recipes, selectedItems) {
-    console.log('Filtering recipes with selected items:', selectedItems);
-    if (!Array.isArray(recipes)) {
-        console.error('Recipes is not an array or is undefined:', recipes);
-        return [];
-    }
-    const filtered = recipes.filter(recipe => {
-        const hasAllItems = selectedItems.every(item =>
-            recipe.ingredients.includes(item) ||
-            recipe.appliances.includes(item) ||
-            recipe.utensils.includes(item)
-        );
-        console.log(`Recipe "${recipe.name}" has all selected items (${selectedItems}): ${hasAllItems}`);
-        return hasAllItems;
-    });
-    console.log('Filtered recipes result:', filtered);
-    return filtered;
 }
 
 
