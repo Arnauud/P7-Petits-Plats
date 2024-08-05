@@ -3,31 +3,61 @@ import { initializeDropdowns } from './Filter/dropDown.js';
 import { displayRecipes } from './RecipeCard/displayRecipe.js';
 import { searchRecipes } from './mainSearch.js';
 
-function setupDropdownEventListeners(recipes) {
-    console.log('Recipes passed to setupDropdownEventListeners:', recipes);
-
-    const dropdownMenu = document.getElementById('someDropdownMenu');
-    const items = ['item1', 'item2', 'item3']; // Example items
-
-    dropdownMenu.addEventListener('click', (event) => {
-        const item = event.target.textContent.trim();
-        console.log('Dropdown item clicked:', item);
-        handleItemSelected(item, dropdownMenu, items, recipes);
-    });
-}
+console.log('Initial recipes:', recipes);
 
 displayRecipes(recipes);
 initializeDropdowns(recipes);
 
-// document.getElementById('searchButton').addEventListener('click', () => {
-//     const searchTerm = document.getElementById('research').value;
-//     const searchResults = searchRecipes(searchTerm, recipes);
-//     displayRecipes(searchResults);
-// });
+console.log('Dropdowns initialized with recipes.');
 
-document.getElementById('research').addEventListener('input', () => {
+document.getElementById('searchButton').addEventListener('click', () => {
     const searchTerm = document.getElementById('research').value;
+    console.log('Search button clicked with search term:', searchTerm);
     const searchResults = searchRecipes(searchTerm, recipes);
+    console.log('Search results:', searchResults);
     displayRecipes(searchResults);
 });
 
+document.getElementById('research').addEventListener('input', () => {
+    const searchTerm = document.getElementById('research').value;
+    console.log('Search input changed, current search term:', searchTerm);
+    const searchResults = searchRecipes(searchTerm, recipes);
+    console.log('Search results:', searchResults);
+    displayRecipes(searchResults);
+});
+
+// Event listener for tags container
+const tagContainer = document.getElementById('tag');
+if (tagContainer) {
+    console.log('Tag container found:', tagContainer);
+    tagContainer.addEventListener('click', (event) => {
+        console.log('Tag container clicked:', event.target);
+        if (event.target.classList.contains('selected-item')) {
+            console.log('Tag clicked:', event.target.textContent);
+
+            // Collect all selected tags
+            const selectedItems = Array.from(document.querySelectorAll('.selected-item'))
+                .map(el => el.textContent.trim());
+            console.log('All selected items:', selectedItems);
+
+            // Filter recipes based on selected items
+
+            const searchResults = searchRecipes(selectedItems, recipes);
+            console.log('Search results:', searchResults);
+            displayRecipes(searchResults);
+
+            // const filteredRecipes = recipes.filter(recipe => {
+            //     return selectedItems.every(item =>
+            //         recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase() === item.toLowerCase()) ||
+            //         recipe.appliance.toLowerCase() === item.toLowerCase() ||
+            //         recipe.utensils.some(utensil => utensil.toLowerCase() === item.toLowerCase())
+            //     );
+            // });
+
+            // console.log('Filtered recipes based on selected tags:', filteredRecipes);
+            // displayRecipes(filteredRecipes);
+        }
+    });
+} else {
+    console.error('Tag container not found.');
+}

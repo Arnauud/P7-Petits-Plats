@@ -1,3 +1,5 @@
+import { handleItemSelected } from "./itemHandlerProcessing.js";
+
 function toLowerCaseItems(items) {
     return items.map(item => item.toLowerCase());
 }
@@ -81,95 +83,9 @@ export function createDropdownItems(items, dropdownMenu) {
     console.log('Dropdown items created.');
 }
 
-
-
 ////////////////////////////////////////////////////////////
-// Function to handle item selection
+// Function to Unique list with no duplicate
 ////////////////////////////////////////////////////////////
-export function handleItemSelected(item, dropdownMenu, items, recipes) {
-    console.log('handleItemSelected called with:', { item, dropdownMenu, items, recipes });
-
-    const updatedItems = items.filter(i => i.toLowerCase() !== item.toLowerCase());
-    console.log(`Updated items after filtering: ${updatedItems}`);
-
-    createDropdownItems(updatedItems, dropdownMenu);
-    console.log(`Dropdown menu updated with items: ${updatedItems}`);
-
-    const mainRecipeContainer = document.querySelector('.selected-items-container');
-    console.log(`Main recipe container found: ${mainRecipeContainer !== null}`);
-
-    if (!mainRecipeContainer) {
-        console.error("Selected items container not found.");
-        return;
-    }
-
-    const selectedItemElement = document.createElement('div');
-    selectedItemElement.textContent = item;
-    selectedItemElement.classList.add('selected-item');
-    console.log(`Created selected item element for: ${item}`);
-
-    const removeButton = document.createElement('button');
-    removeButton.innerHTML = '✕';
-    removeButton.classList.add('remove-button');
-    console.log('Created remove button for the selected item.');
-
-    removeButton.addEventListener('click', () => {
-        console.log(`Remove button clicked for item: ${item}`);
-        mainRecipeContainer.removeChild(selectedItemElement);
-        console.log(`Removed selected item element from container: ${item}`);
-
-        items.push(item);
-        console.log(`Item pushed back to items array: ${items}`);
-
-        createDropdownItems(items, dropdownMenu);
-        console.log(`Dropdown menu updated with items: ${items}`);
-
-        const selectedItems = Array.from(document.querySelectorAll('.selected-item'))
-            .map(el => el.childNodes[0].textContent.trim());
-        console.log(`Selected items after removing: ${selectedItems}`);
-
-        if (Array.isArray(recipes)) {
-            const filteredRecipes = recipes.filter(recipe => {
-                const hasAllItems = selectedItems.every(item =>
-                    recipe.ingredients.includes(item) ||
-                    recipe.appliances.includes(item) ||
-                    recipe.utensils.includes(item)
-                );
-                console.log(`Recipe "${recipe.name}" has all selected items (${selectedItems}): ${hasAllItems}`);
-                return hasAllItems;
-            });
-            console.log(`Filtered recipes after removing:`, filteredRecipes);
-            displayRecipes(filteredRecipes);
-        } else {
-            console.error('Recipes is not an array or is undefined:', recipes);
-        }
-    });
-
-    selectedItemElement.appendChild(removeButton);
-    mainRecipeContainer.insertBefore(selectedItemElement, mainRecipeContainer.firstChild);
-    console.log(`Inserted selected item element into container: ${item}`);
-
-    const selectedItems = Array.from(document.querySelectorAll('.selected-item'))
-        .map(el => el.childNodes[0].textContent.trim());
-    console.log(`Selected items: ${selectedItems}`);
-
-    if (Array.isArray(recipes)) {
-        const filteredRecipes = recipes.filter(recipe => {
-            const hasAllItems = selectedItems.every(item =>
-                recipe.ingredients.includes(item) ||
-                recipe.appliances.includes(item) ||
-                recipe.utensils.includes(item)
-            );
-            console.log(`Recipe "${recipe.name}" has all selected items (${selectedItems}): ${hasAllItems}`);
-            return hasAllItems;
-        });
-        console.log(`Filtered recipes for selected items ${selectedItems}:`, filteredRecipes);
-        displayRecipes(filteredRecipes);
-    } else {
-        console.error('Recipes is not an array or is undefined:', recipes);
-    }
-}
-
 
 export function extractUniqueItems(recipes) {
     const allIngredients = [];
