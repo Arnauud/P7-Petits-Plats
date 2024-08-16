@@ -25,37 +25,46 @@
         </div>
         <div class="filter">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="ingredientDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ingredient
+                <button class="btn btn-secondary" type="button" id="ingredientDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ingredient <i class="fa-solid fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="ingredientDropdownButton">
                     <li>
-                        <input class="form-control dropdown-search" type="text" placeholder="Search...">
+                        <div class="input-wrapper">
+                            <i class="search fa-solid fa-magnifying-glass"></i>
+                            <input class="form-control dropdown-search" type="text" placeholder="Search...">
+                            <button id="clearButton" class="clear-button">x</button>
+                        </div>
                     </li>
                 </ul>
             </div>     
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="applianceDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Appareils
+                <button class="btn btn-secondary" type="button" id="applianceDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Appareils <i class="fa-solid fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="applianceDropdownButton">
                     <li>
-                        <input class="form-control dropdown-search" type="text" placeholder="Search...">
+                        <div class="input-wrapper">
+                            <i class="search fa-solid fa-magnifying-glass"></i>
+                            <input class="form-control dropdown-search" type="text" placeholder="Search...">
+                        </div>
                     </li>
                 </ul>
             </div>
-        
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="utensilDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ustensiles
+                <button class="btn btn-secondary" type="button" id="utensilDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ustensiles <i class="fa-solid fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="utensilDropdownButton">
                     <li>
-                        <input class="form-control dropdown-search" type="text" placeholder="Search...">
+                        <div class="input-wrapper">
+                            <i class="search fa-solid fa-magnifying-glass"></i>
+                            <input class="form-control dropdown-search" type="text" placeholder="Search...">
+                        </div>
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> 
             <div class="recipeCounter"></div>
     </header>
 

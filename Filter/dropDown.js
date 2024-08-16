@@ -9,62 +9,62 @@ export function initializeDropdowns(recipes) {
     document.addEventListener('DOMContentLoaded', () => {
         console.log('DOM fully loaded and parsed');
         const filterContainer = document.querySelector('.filter');
-        console.log('Filter container:', filterContainer);
+        // console.log('Filter container:', filterContainer);
         
         const ingredientDropdown = filterContainer.querySelector('#ingredientDropdownButton + .dropdown-menu');
-        console.log('Ingredient dropdown:', ingredientDropdown);
+        // console.log('Ingredient dropdown:', ingredientDropdown);
         
         const applianceDropdown = filterContainer.querySelector('#applianceDropdownButton + .dropdown-menu');
-        console.log('Appliance dropdown:', applianceDropdown);
+        // console.log('Appliance dropdown:', applianceDropdown);
         
         const utensilDropdown = filterContainer.querySelector('#utensilDropdownButton + .dropdown-menu');
-        console.log('Utensil dropdown:', utensilDropdown);
+        // console.log('Utensil dropdown:', utensilDropdown);
 
         const { allIngredients, allAppliances, allUtensils } = extractUniqueItems(recipes);
-        console.log('Extracted unique items:', { allIngredients, allAppliances, allUtensils });
+        // console.log('Extracted unique items:', { allIngredients, allAppliances, allUtensils });
 
         ingredientItems = [...allIngredients];
         applianceItems = [...allAppliances];
         utensilItems = [...allUtensils];
-        console.log('Initialized ingredientItems:', ingredientItems);
-        console.log('Initialized applianceItems:', applianceItems);
-        console.log('Initialized utensilItems:', utensilItems);
-
-        createDropdownItems(ingredientItems, ingredientDropdown);
-        console.log('Created ingredient dropdown items');
+        // console.log('Initialized ingredientItems:', ingredientItems);
+        // console.log('Initialized applianceItems:', applianceItems);
+        // console.log('Initialized utensilItems:', utensilItems);
+console.log('NOW I AM HERE', recipes)
+        createDropdownItems(ingredientItems, ingredientDropdown, recipes);
+        // console.log('Created ingredient dropdown items');
         
-        createDropdownItems(applianceItems, applianceDropdown);
-        console.log('Created appliance dropdown items');
+        createDropdownItems(applianceItems, applianceDropdown, recipes);
+        // console.log('Created appliance dropdown items');
         
-        createDropdownItems(utensilItems, utensilDropdown);
-        console.log('Created utensil dropdown items');
+        createDropdownItems(utensilItems, utensilDropdown, recipes);
+        // console.log('Created utensil dropdown items');
 
         const ingredientSearchInput = ingredientDropdown.querySelector('.dropdown-search');
-        console.log('Ingredient search input:', ingredientSearchInput);
+        // console.log('Ingredient search input:', ingredientSearchInput);
         
         const applianceSearchInput = applianceDropdown.querySelector('.dropdown-search');
-        console.log('Appliance search input:', applianceSearchInput);
+        // console.log('Appliance search input:', applianceSearchInput);
         
         const utensilSearchInput = utensilDropdown.querySelector('.dropdown-search');
-        console.log('Utensil search input:', utensilSearchInput);
+        // console.log('Utensil search input:', utensilSearchInput);
 
         if (ingredientSearchInput) {
             ingredientSearchInput.addEventListener('input', function() {
-                console.log('Ingredient search input changed');
+                // console.log('Ingredient search input changed');
                 displayRecipes(recipes, ingredientItems);
             });
         }
 
         if (applianceSearchInput) {
             applianceSearchInput.addEventListener('input', function() {
-                console.log('Appliance search input changed');
+                // console.log('Appliance search input changed');
                 displayRecipes(applianceSearchInput, applianceItems, applianceDropdown);
             });
         }
 
         if (utensilSearchInput) {
             utensilSearchInput.addEventListener('input', function() {
-                console.log('Utensil search input changed');
+                // console.log('Utensil search input changed');
                 displayRecipes(utensilSearchInput, utensilItems, utensilDropdown);
             });
         }
