@@ -27,9 +27,8 @@ function formatItems(items) {
 ////////////////////////////////////////////////////////////
 // Function to createDropdownItems
 ////////////////////////////////////////////////////////////
-
 export function createDropdownItems(items, dropdownMenu, recipes) {
-    console.log(`BEEEEEEEEEEPPPPPPPP`);
+    console.log('BEEEEEEEEEEPPPPPPPP');
 
     const searchField = dropdownMenu.querySelector('.dropdown-search');
     // console.log(`Search field found: ${searchField !== null}`);
@@ -69,7 +68,7 @@ export function createDropdownItems(items, dropdownMenu, recipes) {
         a.textContent = item;
         a.addEventListener('click', () => {
             console.log(`Item clicked from dropdownProcessing: ${item}`);
-            console.log('THIS IS ANOTHER CHECK', recipes)
+            console.log(`THIS IS ANOTHER CHECK ${recipes}`);
             handleItemSelected(item, dropdownMenu, items, recipes);
             console.log(`Recipes clicked from dropdownProcessing.js: ${recipes}`);
         });
@@ -79,20 +78,7 @@ export function createDropdownItems(items, dropdownMenu, recipes) {
 
     if (searchField) {
         searchField.focus();
-        
-        // Check if the searchField has any length
-        if (searchField.length > 0) {
-            console.log(searchField.textContent, 'text recorded');
-    
-            // Add 'show' class to clearButton if searchField has text
-            const clearButton = document.getElementById('clearButton');
-            clearButton.classList.add('show');
-        } else {
-            // Remove 'show' class from clearButton if searchField is empty
-            const clearButton = document.getElementById('clearButton');
-            clearButton.classList.remove('show');
-        }
-    
+
         // Get all the dropdown search inputs
         const dropdownSearchInputs = document.querySelectorAll('.dropdown-search');
     
@@ -122,12 +108,25 @@ export function createDropdownItems(items, dropdownMenu, recipes) {
                 }
             });
         });
-    
+        
+        // Handle clear button click event
+        const clearButton = document.getElementById('clearButton');
+        clearButton.addEventListener('click', function() {
+            if (searchField) {
+                searchField.value = ''; // Clear the input field
+                searchField.dispatchEvent(new Event('input')); // Trigger input event to update the dropdown
+            }
+            clearButton.classList.remove('show'); // Hide the clear button
+        });
+
         console.log('Focused on search field.');
     }
 
     console.log('Dropdown items created.');
 }
+
+
+
 
 ////////////////////////////////////////////////////////////
 // Function to Unique list with no duplicate

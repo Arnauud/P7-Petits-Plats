@@ -69,6 +69,11 @@
     color: grey;
     z-index: 1;
   }
+
+  .input-wrapper{
+    height: 36px;
+    width: 160px;
+  }
     
   .dropdown-item:hover{
     background-color: #FFD15B;

@@ -29,7 +29,7 @@ export function initializeDropdowns(recipes) {
         // console.log('Initialized ingredientItems:', ingredientItems);
         // console.log('Initialized applianceItems:', applianceItems);
         // console.log('Initialized utensilItems:', utensilItems);
-console.log('NOW I AM HERE', recipes)
+        console.log('NOW I AM HERE', recipes)
         createDropdownItems(ingredientItems, ingredientDropdown, recipes);
         // console.log('Created ingredient dropdown items');
         

@@ -6,7 +6,7 @@ export function displayRecipes(recipes) {
     main.innerHTML = "";  // Clear existing recipes
     
     const recipeCounter = document.querySelector('.recipeCounter');
-    console.log('Recipe counter element found:', recipeCounter);
+    // console.log('Recipe counter element found:', recipeCounter);
 
     if (!recipes || recipes.length === 0) {
         // console.log('No recipes found, exiting displayRecipes function.');
@@ -36,7 +36,7 @@ export function displayRecipes(recipes) {
 
         // After every third recipe, create a new row
         if ((index + 1) % 3 === 0) {
-            console.log('Appending row to main container.');
+            // console.log('Appending row to main container.');
             main.appendChild(row);
             row = document.createElement('div');
             row.className = 'row';
@@ -46,7 +46,7 @@ export function displayRecipes(recipes) {
 
     // Append any remaining cards
     if (row.children.length > 0) {
-        console.log('Appending remaining recipe cards to the main container.');
+        // console.log('Appending remaining recipe cards to the main container.');
         main.appendChild(row);
     }
 
